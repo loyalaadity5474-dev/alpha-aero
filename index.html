@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Aero | Professional Photography</title>
+    <style>
+        /* Modern Design & Colors */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #3a7bd5;
+            --dark-bg: #121212;
+            --text-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        /* Animation Header */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        p { font-size: 1.2rem; margin-bottom: 30px; }
+
+        /* Booking Form Section */
+        .container {
+            max-width: 600px;
+            margin: -100px auto 50px;
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        h2 { text-align: center; color: var(--primary-color); }
+
+        .form-group { margin-bottom: 20px; }
+
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #2a2a2a;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        footer { text-align: center; padding: 20px; color: #777; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ALPHA AERO</h1>
+        <p>Capturing Moments, Creating Memories</p>
+        <a href="#booking" style="color: white; text-decoration: none; border: 2px solid #00d2ff; padding: 10px 25px; border-radius: 30px;">Book Now</a>
+    </header>
+
+    <div class="container" id="booking">
+        <h2>Online Photography Booking</h2>
+        <form id="photoForm">
+            <div class="form-group">
+                <label>Aapka Naam (Full Name):</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Function Type:</label>
+                <select id="function">
+                    <option value="Wedding">Wedding (Shaadi)</option>
+                    <option value="Party">Party</option>
+                    <option value="Pre-Wedding">Pre-Wedding</option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Other">Other Function</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Function Ki Date:</label>
+                <input type="date" id="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Kuch Khaas Message:</label>
+                <textarea id="message" rows="3" placeholder="Apni requirements likhein..."></textarea>
+            </div>
+
+            <button type="button" onclick="sendToWhatsapp()">Submit Request</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2026 Alpha Aero Photography | Designed for Excellence
+                      this website Design by aditya 
+    </footer>
+
+    <script>
+        function sendToWhatsapp() {
+            let number = "919340013069"; // Aapka WhatsApp number country code ke sath
+
+            let name = document.getElementById('name').value;
+            let functionType = document.getElementById('function').value;
+            let date = document.getElementById('date').value;
+            let message = document.getElementById('message').value;
+
+            if(name == "" || date == "") {
+                alert("Kripya Naam aur Date bharein!");
+                return;
+            }
+
+            // WhatsApp Message Format
+            let url = "https://wa.me/" + number + "?text=" 
+                + "*Alpha Aero Booking Request*" + "%0a"
+                + "*Name:* " + name + "%0a"
+                + "*Event:* " + functionType + "%0a"
+                + "*Date:* " + date + "%0a"
+                + "*Message:* " + message;
+
+            window.open(url, '_blank').focus();
+        }
+    </script>
+
+</body>
+</html>
